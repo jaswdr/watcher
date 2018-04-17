@@ -1,4 +1,4 @@
-# Watch
+# Watcher
 > Watch files and directories and run command when changes happen
 
 ### Instalation
