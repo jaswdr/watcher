@@ -1,0 +1,74 @@
+project_name: watcher
+
+before:
+  hooks:
+    - make clean
+
+builds:
+- env:
+  - CGO_ENABLED=0
+  goos:
+    - linux
+    - darwin
+    - freebsd
+    - windows
+  goarch:
+    - 386
+    - amd64
+    - arm
+    - arm64
+  goarm:
+    - 5
+    - 6
+    - 7
+
+archive:
+  replacements:
+    darwin: Darwin
+    linux: Linux
+    windows: Windows
+    freebsd: FreeBSD
+    386: i386
+    amd64: x86_64
+    arm: ARM32
+    arm64: ARM64
+  format_overrides:
+    - goos: windows
+      format: zip
+
+checksum:
+  name_template: 'checksums.txt'
+
+sign:
+ artifacts: all
+
+snapshot:
+  name_template: "{{ .Tag }}-next"
+
+nfpm:
+  replacements:
+    darwin: Darwin
+    linux: Linux
+    windows: Windows
+    freebsd: FreeBSD
+    386: i386
+    amd64: x86_64
+    arm: ARM32
+    arm64: ARM64
+
+  vendor: Jonathan A. Schweder
+  homepage: https://github.com/jaswdr/watcher
+  maintainer: Jonathan A. Schweder <jonathan.schweder@gmail.com>
+  description: Watch files and directories to run command when changes happens.
+  license: MIT
+
+  formats:
+    - deb
+    - rpm
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
