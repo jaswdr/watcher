@@ -18,14 +18,7 @@ Example:
 	fmt.Println(usage)
 }
 
-func main() {
-	if len(os.Args) < 2 {
-		Usage()
-		os.Exit(1)
-	}
-
-	files := os.Args[2:]
-
+func Watch(command string, patterns []string) {
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
 		panic(err)
@@ -39,7 +32,7 @@ func main() {
 			select {
 			case event := <-watcher.Events:
 				if event.Op&fsnotify.Write == fsnotify.Write {
-					cmd := exec.Command("/bin/sh", "-c", os.Args[1])
+					cmd := exec.Command("/bin/sh", "-c", command)
 					out, _ := cmd.CombinedOutput()
 					fmt.Println(string(out))
 				}
@@ -49,12 +42,21 @@ func main() {
 		}
 	}()
 
-	for _, file := range files {
-		err := watcher.Add(file)
+	for _, pattern := range patterns {
+		err := watcher.Add(pattern)
 		if err != nil {
 			fmt.Println(err)
 		}
 	}
 
 	<-done
+}
+
+func main() {
+	if len(os.Args) < 2 {
+		Usage()
+		os.Exit(1)
+	}
+
+	Watch(os.Args[1], os.Args[2:])
 }
