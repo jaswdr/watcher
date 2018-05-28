@@ -1,6 +1,8 @@
 # Watcher
 > Watch files and directories and run command when changes happen
 
+[![Build Status](https://travis-ci.org/jaswdr/watcher.svg?branch=master)](https://travis-ci.org/jaswdr/watcher)
+
 ### Instalation
 
 Download on the [releases](https://github.com/jaswdr/watch/releases) page.
