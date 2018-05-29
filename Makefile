@@ -3,7 +3,7 @@ TEST_PATTERN?=.
 TEST_OPTIONS?=
 OS=$(shell uname -s)
 
-export PATH := ./bin:$(PATH)
+export PATH := $(PATH):./bin
 
 # Install all the build and lint dependencies
 setup:
@@ -36,12 +36,12 @@ fmt:
 
 # Run all the linters
 lint:
-	gometalinter --deadline 2m --vendor ./...
+	gometalinter --deadline 2m --exclude=vendor ./...
 	find . -name '*.md' -not -wholename './vendor/*' | xargs prettier -l
 .PHONY: lint
 
 # Run all the tests and code checks
-ci: build test lint
+ci: build test
 .PHONY: ci
 
 # Build a beta version of goreleaser
