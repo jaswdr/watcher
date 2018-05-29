@@ -8,7 +8,6 @@ install:
   - make setup
 script:
   - make ci
-  - test -n "$TRAVIS_TAG" || go run main.go --snapshot
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 notifications:
