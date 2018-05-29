@@ -1,9 +1,5 @@
 project_name: watcher
 
-before:
-  hooks:
-    - make clean
-
 builds:
 - env:
   - CGO_ENABLED=0
