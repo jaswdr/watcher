@@ -9,6 +9,13 @@ import (
 	"time"
 )
 
+func TestUsageIsNotEmpty(t *testing.T) {
+	usage := Usage()
+	if len(usage) == 0 {
+		t.Error("Fail expecting that usage was not empty, but it was")
+	}
+}
+
 func TestWriteSingleWatchedFile(t *testing.T) {
 	tmp1, _ := ioutil.TempFile("/tmp", "watcher_")
 	tmp2, _ := ioutil.TempFile("/tmp", "watcher_")

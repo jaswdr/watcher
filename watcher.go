@@ -8,15 +8,13 @@ import (
 	"github.com/fsnotify/fsnotify"
 )
 
-func Usage() {
-	usage := `Usage:
+func Usage() string {
+	return `Usage:
   watcher <command> <files>
 
 Example:
 	watcher ls .
 	`
-
-	fmt.Println(usage)
 }
 
 func Watch(command string, patterns []string) {
@@ -55,7 +53,7 @@ func Watch(command string, patterns []string) {
 
 func main() {
 	if len(os.Args) < 2 {
-		Usage()
+		fmt.Println(Usage())
 		os.Exit(1)
 	}
 
