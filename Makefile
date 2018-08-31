@@ -5,6 +5,9 @@ OS=$(shell uname -s)
 
 export PATH := $(PATH):./bin
 
+clean:
+	rm -rf ./bin/*
+
 # Install all the build and lint dependencies
 setup:
 	go get -u golang.org/x/tools/cmd/stringer
