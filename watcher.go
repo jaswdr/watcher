@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"time"
 
 	"github.com/fsnotify/fsnotify"
 )
@@ -27,12 +28,15 @@ func Watch(command string, directories []string) {
 
 	defer watcher.Close()
 
+	executionId := 1
 	done := make(chan bool)
 	go func() {
 		for {
 			select {
 			case event := <-watcher.Events:
 				if event.Op&fsnotify.Write == fsnotify.Write {
+					fmt.Printf("--- Execution %d (%s) ---\n", executionId, time.Now())
+					executionId += 1
 					cmd := exec.Command("/bin/sh", "-c", command)
 
 					stdout, _ := cmd.StdoutPipe()
