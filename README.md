@@ -25,7 +25,7 @@ Each time a file is updated the command will be run.
 Clone the repository.
 
 ```sh
-$ git clone https://github.com/jaswdr/watch
+$ git clone https://github.com/jaswdr/watcher
 ```
 
 Install dependencies.
