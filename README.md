@@ -5,7 +5,13 @@
 
 ### Instalation
 
-Download on the [releases](https://github.com/jaswdr/watch/releases) page.
+Download on the [releases](https://github.com/jaswdr/watcher/releases) page.
+
+or you can use [GoBinaries](https://gobinaries.com/) and install it from command line.
+
+```bash
+curl -sf https://gobinaries.com/jaswdr/watcher | sh
+```
 
 ### Usage
 
